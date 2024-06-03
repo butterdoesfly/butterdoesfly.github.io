@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>buttersite | Tic Tac Toe</title>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+		<title>buttersite | Tic Tac Toe</title>
+		<link rel="shortcut icon" href="icon.png" type="image/x-icon"/>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="center">
+	    <nav class="navbar navbar-dark bg-dark">
+			<div class="container-fluid">
+			
+				<a class="navbar-brand" href="#">buttersite</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="main-nav">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="index.html">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="salary-calculator.html">Salary Calculator</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="tic-tac-toe.html">Tic Tac Toe</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="punnett-square.html">Punnett Square</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+		</nav>
+		<div class="center-card" id="select">
+		    <div>
+			    <p id="turn_text">Start with X or O?</p>
+			    <button class="btn btn-secondary" value="x" id="selectButton" onclick="select(this)">X</button>
+			    <button class="btn btn-secondary" value="o" id="selectButton" onclick="select(this)">O</button>
+	        </div>
+		</div>
+		<br><br><br>
+		<div class="row">
+		    <div class="col-12 center">
+		        <h1>Tic Tac Toe</h1>
+		    </div>
+		</div>
+		
+		<div id="winningText"></div>
+		
+	    <div class="center row no-move">
+
+	        <div class="col-12">
+	            <button class="button-like" onclick="change('0');" id="0"></button>
+	        
+	            <button class="button-like" onclick="change('1');" id="1"></button>
+	        
+	   		    <button class="button-like" onclick="change('2');" id="2"></button>
+	        </div>
+            
+	    </div>
+
+
+        <br>
+        
+
+        <div class="center row no-move">
+	        
+	        <div class="col-12">
+                <button class="button-like" onclick="change('3');" id="3"></button>
+	        
+			    <button class="button-like" onclick="change('4');" id="4"></button>
+	        
+			    <button class="button-like" onclick="change('5');" id="5"></button>
+	        </div>
+
+        </div>
+		
+		<br>
+		
+        <div class="center row no-move">
+
+	        <div class="col-12">
+                <button class="button-like" onclick="change('6');" id="6"></button>
+	        
+		        <button class="button-like" onclick="change('7');" id="7"></button>
+	        
+		        <button class="button-like" onclick="change('8');" id="8"></button>
+	        </div>
+	        
+        </div>
+	</body>
+	<script>
+	    winningText = document.getElementById("winningText");
+        active = false;
+        turn = ""
+        function select(object) {
+        	id = object.value;
+        	if (id=="x") {
+        		turn = "x";
+        	} else if (id=="o") {
+        		turn = "o";
+        	}
+        	active=true;
+        	document.getElementById("select").remove();
+        }
+        function change(box) {
+        	if (active==true) {
+        		Box = document.getElementById(box);
+        		Box.onclick="";
+        		if (turn == "x") {
+        			Box.innerHTML = "x";
+        			turn = "o";
+        		} else if (turn=="o") {
+        			Box.innerHTML = "o";
+        			turn = "x";
+        		}
+        
+        		scoreTable = [
+        			[[document.getElementById("0").innerHTML], [document.getElementById("1").innerHTML], [document.getElementById("2").innerHTML]],
+        			[[document.getElementById("3").innerHTML], [document.getElementById("4").innerHTML], [document.getElementById("5").innerHTML]],
+        			[[document.getElementById("6").innerHTML], [document.getElementById("7").innerHTML], [document.getElementById("8").innerHTML]] 
+        		];
+        		score = 0
+        
+        		if (
+        				scoreTable[0][0] == "x" && scoreTable[0][1] == "x" && scoreTable[0][2] == "x" ||
+        				scoreTable[1][0] == "x" && scoreTable[1][1] == "x" && scoreTable[1][2] == "x" ||
+        				scoreTable[2][0] == "x" && scoreTable[2][1] == "x" && scoreTable[2][2] == "x" ||
+        
+        				scoreTable[0][0] == "x" && scoreTable[1][0] == "x" && scoreTable[2][0] == "x" ||
+        				scoreTable[0][1] == "x" && scoreTable[1][1] == "x" && scoreTable[2][1] == "x" ||
+        				scoreTable[0][2] == "x" && scoreTable[1][2] == "x" && scoreTable[2][2] == "x" ||
+        
+        				scoreTable[0][0] == "x" && scoreTable[1][1] == "x" && scoreTable[2][2] == "x" ||
+        				scoreTable[0][2] == "x" && scoreTable[1][1] == "x" && scoreTable[2][0] == "x" 
+        			 ) {
+        					active = false
+        					winningText.innerHTML = "X WINS!!!";
+        			} else if 
+        				(
+        				scoreTable[0][0] == "o" && scoreTable[0][1] == "o" && scoreTable[0][2] == "o" ||
+        				scoreTable[1][0] == "o" && scoreTable[1][1] == "o" && scoreTable[1][2] == "o" ||
+        				scoreTable[2][0] == "o" && scoreTable[2][1] == "o" && scoreTable[2][2] == "o" ||
+        
+        				scoreTable[0][0] == "o" && scoreTable[1][0] == "o" && scoreTable[2][0] == "o" ||
+        				scoreTable[0][1] == "o" && scoreTable[1][1] == "o" && scoreTable[2][1] == "o" ||
+        				scoreTable[0][2] == "o" && scoreTable[1][2] == "o" && scoreTable[2][2] == "o" ||
+        
+        				scoreTable[0][0] == "o" && scoreTable[1][1] == "o" && scoreTable[2][2] == "o" ||
+        				scoreTable[0][2] == "o" && scoreTable[1][1] == "o" && scoreTable[2][0] == "o"
+        				) {
+        					active = false
+        					winningText.innerHTML = "O WINS!!!";
+        			} else {
+        					tie = true
+        					for (i=0; i < 3; i+=1) {
+        						for (j=0; j < 3; j+=1) {
+        							if (scoreTable[i][j] == "") {
+        								tie = false
+        							}
+        						}
+        					}
+        					if (tie==true) {
+        						winningText.innerHTML = "TIE!!!";
+        						active = false
+        					}
+        			}
+        	}
+        }
+	</script>
+</html>
