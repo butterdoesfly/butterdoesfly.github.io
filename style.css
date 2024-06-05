@@ -105,6 +105,7 @@ label {
 	background-color: #e6e8eb;
 	color:#292b2e;
 	filter: drop-shadow(1px 1px 1px);
+	vertical-align: middle;
 }
 
 #select p {
